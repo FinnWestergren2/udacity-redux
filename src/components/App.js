@@ -1,16 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import routes from './Routes';
-import BrowserRouter from 'react-router-dom';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import '../css/App.css';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {routes(state)}
+        {routes()}
       </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+export default connect()(App);
