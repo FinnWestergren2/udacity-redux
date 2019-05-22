@@ -2,13 +2,11 @@ import {_getQuestions, _getUsers} from '../_DATA';
 import {receiveQuestions} from './questions';
 import {receiveUsers} from './users';
 
-export function recieveAll() {
+export function receiveAll() {
     return (dispatch) => {
-        return (async () => {
-            const users = await _getUsers();
-            const questions = await _getQuestions();
-            dispatch(receiveUsers(users));
-            dispatch(receiveQuestions(questions));
-        })
+        _getUsers().then(data => dispatch(receiveUsers(data)));
+        _getQuestions().then(data => dispatch(receiveQuestions(data)));
     }
 }
+
+
