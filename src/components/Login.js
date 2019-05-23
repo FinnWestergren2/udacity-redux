@@ -1,31 +1,34 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { setCurrentUser as setCurrentUserAction } from '../actions/users';
 import { connect } from 'react-redux';
+import UserComponent from './UserComponent';
 import history from '../history';
 
 const Login = (props) => {
     const { setCurrentUser, users } = props;
-    useEffect(() => {
-        console.log('Users:', users)
-    },[users]);
     return (
-        <>
-            <div onClick={() => setCurrentUser({theboy:"theboy"})}>login</div>
-            <div onClick={() => history.push('/test')}>test</div>
-        </>
+        <div className="login-page">
+            {Object.keys(users).map(key => {
+                const user = users[key];
+                return (
+                <UserComponent
+                    key={user.id}
+                    {...user}/>);
+            })}
+        </div>
     );
 };
 
 const mapStateTopProps = (state) => {
     return {
         users: state.users
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         setCurrentUser: (user) => dispatch(setCurrentUserAction(user))
-    }
+    };
 };
 
 export default connect(mapStateTopProps, mapDispatchToProps)(Login);
