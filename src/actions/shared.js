@@ -8,5 +8,3 @@ export function receiveAll() {
         _getQuestions().then(data => dispatch(receiveQuestions(data)));
     }
 }
-
-

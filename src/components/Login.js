@@ -3,17 +3,24 @@ import { setCurrentUser as setCurrentUserAction } from '../actions/users';
 import { connect } from 'react-redux';
 import UserComponent from './UserComponent';
 import history from '../history';
+import UserComponent from './UserComponent';
 
 const Login = (props) => {
     const { setCurrentUser, users } = props;
+
+    const handleSelect = (user) => {
+        setCurrentUser(user);
+        history.push('/dashboard');
+    }
+
     return (
-        <div className="login-page">
+        <div className="login">
             {Object.keys(users).map(key => {
                 const user = users[key];
-                return (
-                <UserComponent
-                    key={user.id}
-                    {...user}/>);
+                return (<UserComponent 
+                    {...user}
+                    key={key}
+                    onSelect={() => handleSelect(user)}/>);
             })}
         </div>
     );

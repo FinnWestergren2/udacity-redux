@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 
 const UserComponent = (props) => {
-    const { id, name, avatarURL } = props;
-    const [hover, setHover] = useState(false);
+    const { avatarURL, name, onSelect } = props;
 
     return (
-        <span className="user-component">
-            <img src={avatarURL}/>
-            <div/>
-        </span>
+        <div 
+            className="UserComponent"
+            onClick={onSelect}>
+            <img src={avatarURL} alt=""/>
+            <span>{name}</span>
+        </div>
     );
 };
 
