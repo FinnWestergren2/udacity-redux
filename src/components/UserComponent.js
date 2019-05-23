@@ -7,7 +7,8 @@ const UserComponent = (props) => {
         <div 
             className="UserComponent"
             onClick={onSelect}>
-            {name}
+            <img src={avatarURL} alt=""/>
+            <span>{name}</span>
         </div>
     );
 };

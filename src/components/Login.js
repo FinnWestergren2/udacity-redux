@@ -13,15 +13,15 @@ const Login = (props) => {
     }
 
     return (
-        <>
+        <div className="login">
             {Object.keys(users).map(key => {
                 const user = users[key];
-                return <UserComponent 
+                return (<UserComponent 
                     {...user}
                     key={key}
-                    onSelect={() => handleSelect(user)}/>
+                    onSelect={() => handleSelect(user)}/>);
             })}
-        </>
+        </div>
     );
 };
 

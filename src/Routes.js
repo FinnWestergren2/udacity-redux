@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 import { connect } from 'react-redux';
 
 const Routes = (props) => {
@@ -12,7 +13,7 @@ const Routes = (props) => {
                 exact={Object.keys(currentUser)[0] && true} // forces you to log in if entering from rando entry point
                 path='/'/>
             <Route
-                component={() => <div>{currentUser}</div>}
+                component={() => <Dashboard/>}
                 path='/dashboard'/>
         </Switch>
     )

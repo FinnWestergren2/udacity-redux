@@ -4,8 +4,8 @@ import history from '../history';
 import UserComponent from './UserComponent';
 import { setCurrentUser as setCurrentUserAction } from '../actions/users';
 
-const QuestionsTab = (props) => {
-    return <div>QuestionsTab</div>
+const LeaderboardTab = (props) => {
+    return <div>LeaderboardTab</div>
 };
 
-export default QuestionsTab;
+export default LeaderboardTab;
