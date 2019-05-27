@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import history from '../history';
-import UserComponent from './UserComponent';
-import { setCurrentUser as setCurrentUserAction } from '../actions/users';
+import React from 'react';
 
 const ProfileTab = (props) => {
     return <div>ProfileTab</div>

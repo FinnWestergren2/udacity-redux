@@ -2,6 +2,7 @@ export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER';
 
 export function receiveUsers(users) {
     return {
@@ -24,9 +25,15 @@ export function deleteUser(user){
     }
 }
 
-export function setCurrentUser(currentUser) {
+export function setCurrentUser(currentUser){
     return {
         type: SET_CURRENT_USER,
         currentUser
+    }
+}
+
+export function clearCurrentUser(){
+    return {
+        type: CLEAR_CURRENT_USER
     }
 }

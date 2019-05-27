@@ -3,14 +3,13 @@ import { setCurrentUser as setCurrentUserAction } from '../actions/users';
 import { connect } from 'react-redux';
 import UserComponent from './UserComponent';
 import history from '../history';
-import UserComponent from './UserComponent';
 
 const Login = (props) => {
     const { setCurrentUser, users } = props;
 
     const handleSelect = (user) => {
         setCurrentUser(user);
-        history.push('/dashboard');
+        history.push('/');
     }
 
     return (

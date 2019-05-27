@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import Routes from '../Routes';
+import Routes from './Routes';
 import { Router } from 'react-router-dom';
 import { receiveAll } from '../actions/shared';
+import Dashboard from './Dashboard';
 import history from '../history'
 import '../css/App.css';
 
@@ -15,7 +16,9 @@ const App = (props) => {
     return(
     <div className="App">
       <Router history={history}>
-        <Routes/>
+        <Dashboard>
+          <Routes/>
+        </Dashboard>
       </Router>
     </div>);
 };
