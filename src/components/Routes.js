@@ -31,7 +31,8 @@ const Routes = (props) => {
                 path='/leaderboard'/>
             <Route
                 component={QuestionPage}
-                path='/questions/:question_id'/>
+                exact={false}
+                path='/questions/:id'/>
         </Switch>
     )
 };

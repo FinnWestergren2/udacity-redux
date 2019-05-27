@@ -22,7 +22,7 @@ const Dashboard = (props) => {
                 <button onClick={() => history.push('/leaderboard')}>Leaderboard</button> 
             </span>
             <span className="current-user">
-                <UserComponent {...currentUser}/>
+                <UserComponent id={currentUser.id} smallIcon={true}/>
                 <button  onClick={logout}>logout</button>
             </span>
         </>
