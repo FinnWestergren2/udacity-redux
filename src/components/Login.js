@@ -9,11 +9,14 @@ const Login = (props) => {
 
     const handleSelect = (user) => {
         setCurrentUser(user);
-        history.push('/');
+        if(window.location.pathname === '/'){
+            history.push('/home')
+        }
     }
 
     return (
         <div className="login">
+            <div className="page-header">Select a User</div>
             {Object.keys(users).map(key => {
                 const user = users[key];
                 return (<UserComponent 
@@ -27,7 +30,8 @@ const Login = (props) => {
 
 const mapStateTopProps = (state) => {
     return {
-        users: state.users
+        users: state.users,
+        questions: state.questions
     };
 };
 

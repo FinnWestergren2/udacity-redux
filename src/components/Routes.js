@@ -15,7 +15,7 @@ const Routes = (props) => {
         <Switch>
             <Route
                 component={Login}
-                exact={Object.keys(currentUser)[0] && true} // forces you to log in if entering from rando entry point
+                exact={Object.keys(currentUser)[0] !== undefined} // forces you to log in if entering from rando entry point
                 path='/'/>
             <Route
                 component={HomeTab}

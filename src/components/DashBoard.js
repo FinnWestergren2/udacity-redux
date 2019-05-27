@@ -2,28 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import history from '../history';
 import UserComponent from './UserComponent';
-import { setCurrentUser as setCurrentUserAction, clearCurrentUser } from '../actions/users';
+import { clearCurrentUser as clearCurrentUserAction} from '../actions/users';
 
 
 const Dashboard = (props) => {
-    const { currentUser, setCurrentUser, children } = props;
+    const { currentUser, clearCurrentUser, children } = props;
 
     const logout = () => {
-        setCurrentUser(null);
+        clearCurrentUser();
     };
     
     return(
         <div className="dashboard">
+        { Object.keys(currentUser)[0] !== undefined &&
+        <>
             <span className="tabs">
                 <button onClick={() => history.push('/home')}>Home</button>
                 <button onClick={() => history.push('/add')}>NewQuestion</button>
-                <button onClick={() => history.push('/leaderboard')}>Leaderboard</button>
+                <button onClick={() => history.push('/leaderboard')}>Leaderboard</button> 
             </span>
             <span className="current-user">
                 <UserComponent {...currentUser}/>
                 <button  onClick={logout}>logout</button>
             </span>
-            <div className="tab-container">
+        </>
+        }
+            <div className="page-container">
                 {children}
             </div>
         </div>
@@ -38,7 +42,7 @@ const mapStateTopProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentUser: (user) => dispatch(setCurrentUserAction(user))
+        clearCurrentUser: () => dispatch(clearCurrentUserAction())
     }
 };
 
