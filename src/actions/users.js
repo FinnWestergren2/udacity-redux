@@ -40,6 +40,7 @@ export function clearCurrentUser(){
 }
 
 export function addAnswer(answerObj){
+    console.log(answerObj);
     return {
         type: ADD_ANSWER,
         answerObj

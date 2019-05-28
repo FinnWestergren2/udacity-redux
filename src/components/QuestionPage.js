@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import UserComponent from './UserComponent';
 import { addAnswer as addAnswerAction} from '../actions/users';
@@ -8,13 +8,18 @@ import { _saveQuestionAnswer } from '../_DATA';
 const QuestionPage = (props) => {
     const { match, questions, currentUser, addAnswer } = props;
     const { author, optionOne, optionTwo, id } = questions[match.params.id];
+    const [completed, setCompleted] = useState();
     let selection = useRef(null);
+
+    useEffect(() => setCompleted(currentUser.answers.hasOwnProperty(id)), [currentUser.answers, id, completed])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if(selection.option.value === '') return;
         const answerObj = { authedUser: currentUser.id, qid: id, answer: selection.option.value};
-        _saveQuestionAnswer(answerObj).then(() => addAnswer(answerObj));
+        setCompleted(true);
+        addAnswer(answerObj).catch(()=>setCompleted(false));
     };
 
     const poll = () => {
@@ -34,12 +39,17 @@ const QuestionPage = (props) => {
     };
 
     const results = () => {
+        return (
+            <div>
+                hiya
+            </div>
+        );
     };
 
     return (
         <div className="question-details">
             {/*<UserComponent id={author}/>*/}
-            {currentUser.answers.hasOwnProperty(id) ? poll() : results()}
+            {completed ? poll() : results()}
         </div>
     );
 };
@@ -53,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addAnswer: () => dispatch(addAnswerAction)
+        addAnswer: (answerObj) => _saveQuestionAnswer(answerObj).then(() => dispatch(addAnswerAction(answerObj)))
     }
 };
 
