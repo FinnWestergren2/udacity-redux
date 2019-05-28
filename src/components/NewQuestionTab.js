@@ -5,7 +5,8 @@ import { addQuestion } from '../actions/questions'
 import history from '../history';
 
 const NewQuestionTab = (props) => {
-    const { currentUser, addQuestion } = props;
+    const { currentUserId, addQuestion, users } = props;
+    const currentUser = users[currentUserId];
     const [disableSubmit, setDisableSubmit] = useState(true);
     const optionOne = useRef(null);
     const optionTwo = useRef(null);
@@ -50,7 +51,10 @@ const NewQuestionTab = (props) => {
 };
 
 const mapStateTopProps = (state) => {
-    return { currentUser: state.currentUser }
+    return { 
+        currentUserId: state.currentUser, 
+        users: state.users
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

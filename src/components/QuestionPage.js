@@ -6,7 +6,8 @@ import { _saveQuestionAnswer } from '../_DATA';
 
 
 const QuestionPage = (props) => {
-    const { match, questions, currentUser, addAnswer } = props;
+    const { match, questions, users, currentUserId, addAnswer } = props;
+    const currentUser = users[currentUserId];
     const { author, optionOne, optionTwo, id } = questions[match.params.id];
     const [completed, setCompleted] = useState();
     let selection = useRef(null);
@@ -59,7 +60,7 @@ const QuestionPage = (props) => {
 
     return (
         <div className="question-details">
-            {/*<UserComponent id={author}/>*/}
+            {<UserComponent id={author}/>}
             {completed ? results() : poll()}
         </div>
     );
@@ -68,7 +69,8 @@ const QuestionPage = (props) => {
 const mapStateToProps = (state) => {
     return {
         questions: state.questions,
-        currentUser: state.currentUser
+        users: state.users,
+        currentUserId: state.currentUser
     };
 }
 

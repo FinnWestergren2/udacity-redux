@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import history from '../history';
 import UserComponent from './UserComponent';
-import { clearCurrentUser as clearCurrentUserAction} from '../actions/users';
+import { clearCurrentUser as clearCurrentUserAction} from '../actions/currentUser';
 
 
 const Dashboard = (props) => {
-    const { currentUser, clearCurrentUser, children } = props;
+    const { currentUserId, users, clearCurrentUser, children } = props;
+    const currentUser = users[currentUserId];
 
     const logout = () => {
         clearCurrentUser();
@@ -14,7 +15,7 @@ const Dashboard = (props) => {
     
     return(
         <div className="dashboard">
-        { Object.keys(currentUser)[0] !== undefined &&
+        { currentUserId !== null &&
         <>
             <span className="tabs">
                 <button onClick={() => history.push('/home')}>Home</button>
@@ -36,7 +37,8 @@ const Dashboard = (props) => {
 
 const mapStateTopProps = (state) => {
     return {
-        currentUser: state.currentUser
+        users: state.users,
+        currentUserId: state.currentUser
     }
 };
 

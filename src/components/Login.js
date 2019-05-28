@@ -1,5 +1,5 @@
 import React from 'react';
-import { setCurrentUser as setCurrentUserAction } from '../actions/users';
+import { setCurrentUser as setCurrentUserAction } from '../actions/currentUser';
 import { connect } from 'react-redux';
 import UserComponent from './UserComponent';
 import history from '../history';
@@ -7,8 +7,8 @@ import history from '../history';
 const Login = (props) => {
     const { setCurrentUser, users } = props;
 
-    const handleSelect = (user) => {
-        setCurrentUser(user);
+    const handleSelect = (userId) => {
+        setCurrentUser(userId);
         if(window.location.pathname === '/'){
             history.push('/home')
         }
@@ -22,7 +22,7 @@ const Login = (props) => {
                 return (<UserComponent 
                     {...user}
                     key={key}
-                    onSelect={() => handleSelect(user)}/>);
+                    onSelect={() => handleSelect(key)}/>);
             })}
         </div>
     );
@@ -37,7 +37,7 @@ const mapStateTopProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentUser: (user) => dispatch(setCurrentUserAction(user))
+        setCurrentUser: (userId) => dispatch(setCurrentUserAction(userId))
     };
 };
 

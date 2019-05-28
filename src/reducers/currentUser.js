@@ -1,19 +1,11 @@
-import {SET_CURRENT_USER, CLEAR_CURRENT_USER} from '../actions/users'
-import {ADD_ANSWER} from '../actions/shared';
+import {SET_CURRENT_USER, CLEAR_CURRENT_USER} from '../actions/currentUser'
 
-export default function currentUser (state = {}, action) {
+export default function currentUser (state = null, action) {
     switch (action.type) {
         case SET_CURRENT_USER :
-            return action.currentUser;
+            return action.userId;
         case CLEAR_CURRENT_USER :
-            return {};
-        case ADD_ANSWER :
-            const {authedUser, qid, answer} = action.answerObj;
-            if(state.id !== authedUser) return state;
-            return {
-                ...state,
-                answers: {...state.answers, [qid]: answer}
-            };
+            return null;
         default :
             return state;
     }

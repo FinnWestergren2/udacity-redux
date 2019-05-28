@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import QuestionPreview from './QuestionPreview';
 
 const HomeTab = (props) => {
-    const { questions, currentUser } = props;
+    const { questions, users, currentUserId } = props;
+    const currentUser = users[currentUserId]
     const [displayState, setDisplayState] = useState('all');
 
     const questionsToDisplay = () => {
         const questionsToDisplay = () => {
             switch(displayState) {
-                case 'all':
-                return Object.keys(questions)
                 case 'complete':
-                return Object.keys(questions).filter(q => currentUser.answers.hasOwnProperty(q))
+                    return Object.keys(questions).filter(q => currentUser.answers.hasOwnProperty(q))
                 case 'incomplete':
-                return Object.keys(questions).filter(q => !currentUser.answers.hasOwnProperty(q))
+                    return Object.keys(questions).filter(q => !currentUser.answers.hasOwnProperty(q))
+                case 'all':
+                default:
+                    return Object.keys(questions)
             }
         };
         return questionsToDisplay().map(q => <QuestionPreview key={q} {...questions[q]}/>);
@@ -41,8 +43,9 @@ const HomeTab = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        users: state.users,
         questions: state.questions,
-        currentUser: state.currentUser
+        currentUserId: state.currentUser
     };
 };
 
