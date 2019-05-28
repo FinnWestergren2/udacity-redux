@@ -1,5 +1,5 @@
-import {SET_CURRENT_USER, ADD_ANSWER} from '../actions/users'
-import {CLEAR_CURRENT_USER} from '../actions/users'
+import {SET_CURRENT_USER, CLEAR_CURRENT_USER} from '../actions/users'
+import {ADD_ANSWER} from '../actions/shared';
 
 export default function currentUser (state = {}, action) {
     switch (action.type) {

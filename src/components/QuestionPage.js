@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import UserComponent from './UserComponent';
-import { addAnswer as addAnswerAction} from '../actions/users';
+import { addAnswer as addAnswerAction} from '../actions/shared';
 import { _saveQuestionAnswer } from '../_DATA';
 
 
@@ -18,30 +18,41 @@ const QuestionPage = (props) => {
         e.preventDefault();
         if(selection.option.value === '') return;
         const answerObj = { authedUser: currentUser.id, qid: id, answer: selection.option.value};
-        setCompleted(true);
-        addAnswer(answerObj).catch(()=>setCompleted(false));
+        addAnswer(answerObj).then(() => {
+            setCompleted(true);
+        });
     };
 
     const poll = () => {
         return (
-            <div className="options">
-                <div className="poll-option">
-                    <form 
-                        ref={s => selection = s}
-                        onSubmit={e => handleSubmit(e)}>
+            <div className="poll-option">
+                <form 
+                    ref={s => selection = s}
+                    onSubmit={e => handleSubmit(e)}>
+                    <div>Would you rather...
+                        <br/>
                         <label>{optionOne.text}<input type="radio" value="optionOne" name="option"/></label>
+                        <br/>OR<br/>
                         <label>{optionTwo.text}<input type="radio" value="optionTwo" name="option"/></label>
+                        <br/>
                         <input type="submit"/>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         );
     };
 
     const results = () => {
+        const optOneVotes = optionOne.votes.length;
+        const optTwoVotes = optionTwo.votes.length;
+        const totalVotes = optOneVotes + optTwoVotes;
+        const percentString = (numerator) => `${Math.floor(numerator/totalVotes*100)}%`;
+
         return (
-            <div>
-                hiya
+            <div className="poll-results">
+                <label>{`Option One: ${optionOne.text}: `}<span>{optOneVotes} ({percentString(optOneVotes)})</span></label>
+                <br/>
+                <label>{`Option Two: ${optionTwo.text}: `}<span>{optTwoVotes} ({percentString(optTwoVotes)})</span></label>
             </div>
         );
     };
@@ -49,7 +60,7 @@ const QuestionPage = (props) => {
     return (
         <div className="question-details">
             {/*<UserComponent id={author}/>*/}
-            {completed ? poll() : results()}
+            {completed ? results() : poll()}
         </div>
     );
 };

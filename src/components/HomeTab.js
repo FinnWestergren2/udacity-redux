@@ -4,42 +4,37 @@ import QuestionPreview from './QuestionPreview';
 
 const HomeTab = (props) => {
     const { questions, currentUser } = props;
-    const [toggleDisplayCompleted, setToggleDisplayCompleted] = useState(false);
+    const [displayState, setDisplayState] = useState('all');
 
-    const displayCompleted = () => {
-        return(
-            <ul>
-            {Object.keys(questions).filter(q => currentUser.answers.hasOwnProperty(q)).map(q =>
-                <QuestionPreview key={q} {...questions[q]}/>
-            )}
-            </ul>
-        );
+    const questionsToDisplay = () => {
+        const questionsToDisplay = () => {
+            switch(displayState) {
+                case 'all':
+                return Object.keys(questions)
+                case 'complete':
+                return Object.keys(questions).filter(q => currentUser.answers.hasOwnProperty(q))
+                case 'incomplete':
+                return Object.keys(questions).filter(q => !currentUser.answers.hasOwnProperty(q))
+            }
+        };
+        return questionsToDisplay().map(q => <QuestionPreview key={q} {...questions[q]}/>);
     };
-
-    const displayAll = () => {
-        return(
-            <ul>
-            {Object.keys(questions).map(q =>
-                <QuestionPreview key={q} {...questions[q]}/>
-            )}
-            </ul>
-        );
-    }
 
     return (
     <div className="home-tab">
         <div className="page-header">Home</div>
         <span className="tabs">
             <button 
-                disabled={!toggleDisplayCompleted}
-                onClick={() => setToggleDisplayCompleted(false)}>Show all</button>
+                disabled={displayState === 'all'}
+                onClick={() => setDisplayState('all')}>Show all</button>
             <button 
-                disabled={toggleDisplayCompleted}
-                onClick={() => setToggleDisplayCompleted(true)}>Show Completed</button>
+                disabled={displayState === 'complete'}
+                onClick={() => setDisplayState('complete')}>Show Completed</button>
+            <button 
+                disabled={displayState === 'incomplete'}
+                onClick={() => setDisplayState('incomplete')}>Show Incomplete</button>
         </span>
-        {toggleDisplayCompleted 
-            ? displayCompleted()
-            : displayAll()}
+        {questionsToDisplay()}
     </div>
     );
 };

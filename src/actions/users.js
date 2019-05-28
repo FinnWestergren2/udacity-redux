@@ -3,7 +3,6 @@ export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const CLEAR_CURRENT_USER = 'CLEAR_CURRENT_USER';
-export const ADD_ANSWER = 'ADD_ANSWER';
 
 export function receiveUsers(users) {
     return {
@@ -39,10 +38,3 @@ export function clearCurrentUser(){
     }
 }
 
-export function addAnswer(answerObj){
-    console.log(answerObj);
-    return {
-        type: ADD_ANSWER,
-        answerObj
-    }
-}

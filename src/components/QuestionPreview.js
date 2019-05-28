@@ -7,7 +7,7 @@ const QuestionPreview = (props) => {
     return (
         <div>
             <UserComponent id={author} smallIcon={true}/>
-            <div className="options">{`${optionOne.text} ' OR ' ${optionTwo.text}`}</div>
+            <div className="options">{optionOne.text}<br/>OR<br/>{optionTwo.text}</div>
             <button onClick={() => history.push(`/questions/${id}`)}>view poll</button>
         </div>
     );
