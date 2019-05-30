@@ -8,12 +8,18 @@ import { _saveQuestionAnswer } from '../_DATA';
 const QuestionPage = (props) => {
     const { match, questions, users, currentUserId, addAnswer } = props;
     const currentUser = users[currentUserId];
-    const { author, optionOne, optionTwo, id } = questions[match.params.id];
+    const id = match.params.id;
     const [completed, setCompleted] = useState();
     let selection = useRef(null);
 
     useEffect(() => setCompleted(currentUser.answers.hasOwnProperty(id)), [currentUser.answers, id, completed])
 
+
+    if(!questions.hasOwnProperty(match.params.id)) {
+        return <h2>404 Error: The question you are trying to access does not exist</h2>
+    }
+
+    const { author, optionOne, optionTwo } = questions[id];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,12 +54,13 @@ const QuestionPage = (props) => {
         const optTwoVotes = optionTwo.votes.length;
         const totalVotes = optOneVotes + optTwoVotes;
         const percentString = (numerator) => `${Math.floor(numerator/totalVotes*100)}%`;
+        const selectedOptOne = currentUser.answers[id] === "optionOne";
 
         return (
             <div className="poll-results">
-                <label>{`Option One: ${optionOne.text}: `}<span>{optOneVotes} ({percentString(optOneVotes)})</span></label>
+                <label>{`Option One: ${optionOne.text}: `}<span>{optOneVotes} ({percentString(optOneVotes)})</span>{selectedOptOne? ' <--- Your Choice' : ''}</label>
                 <br/>
-                <label>{`Option Two: ${optionTwo.text}: `}<span>{optTwoVotes} ({percentString(optTwoVotes)})</span></label>
+                <label>{`Option Two: ${optionTwo.text}: `}<span>{optTwoVotes} ({percentString(optTwoVotes)})</span>{selectedOptOne? '' : ' <--- Your Choice'}</label>
             </div>
         );
     };

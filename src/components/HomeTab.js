@@ -5,7 +5,7 @@ import QuestionPreview from './QuestionPreview';
 const HomeTab = (props) => {
     const { questions, users, currentUserId } = props;
     const currentUser = users[currentUserId]
-    const [displayState, setDisplayState] = useState('all');
+    const [displayState, setDisplayState] = useState('incomplete');
 
     const questionsToDisplay = () => {
         const questionsToDisplay = () => {
@@ -19,7 +19,8 @@ const HomeTab = (props) => {
                     return Object.keys(questions)
             }
         };
-        return questionsToDisplay().map(q => <QuestionPreview key={q} {...questions[q]}/>);
+        if(questionsToDisplay().length === 0) return <h2>You've answered all available polls!</h2>
+        return questionsToDisplay().sort((a, b) => questions[b].timestamp - questions[a].timestamp ).map(q => <QuestionPreview key={q} {...questions[q]}/>);
     };
 
     return (

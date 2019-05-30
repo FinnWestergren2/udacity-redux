@@ -20,7 +20,6 @@ const NewQuestionTab = (props) => {
             optionTwoText: optionTwo.current.value
         }).then(data => {
             addQuestion(data);
-            console.log(data);
             history.push(`/questions/${data.id}`);
         });
     };
