@@ -24,7 +24,7 @@ const HomeTab = (props) => {
 
     return (
     <div className="home-tab">
-        <div className="page-header">Home</div>
+        <h2 className="page-header">Home</h2>
         <span className="tabs">
             <button 
                 disabled={displayState === 'all'}
@@ -36,7 +36,7 @@ const HomeTab = (props) => {
                 disabled={displayState === 'incomplete'}
                 onClick={() => setDisplayState('incomplete')}>Show Incomplete</button>
         </span>
-        {questionsToDisplay()}
+        <div className="page-meat">{questionsToDisplay()}</div>
     </div>
     );
 };

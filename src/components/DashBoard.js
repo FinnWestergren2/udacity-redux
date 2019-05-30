@@ -15,19 +15,21 @@ const Dashboard = (props) => {
     
     return(
         <div className="dashboard">
-        { currentUserId !== null &&
-        <>
-            <span className="tabs">
-                <button onClick={() => history.push('/home')}>Home</button>
-                <button onClick={() => history.push('/add')}>NewQuestion</button>
-                <button onClick={() => history.push('/leaderboard')}>Leaderboard</button> 
+            <span className="dashboard-header">
+            <h1 className="app-title">Would You Rather?</h1>
+            { currentUserId !== null &&
+            <>
+                <span className="tabs">
+                    <button onClick={() => history.push('/home')}>Home</button>
+                    <button onClick={() => history.push('/add')}>New Question</button>
+                    <button onClick={() => history.push('/leaderboard')}>Leaderboard</button> 
+                </span>
+                <UserComponent id={currentUser.id} smallIcon={true}>
+                    <button className="logout-button" onClick={logout}>logout</button>
+                </UserComponent>
+            </>
+            }
             </span>
-            <span className="current-user">
-                <UserComponent id={currentUser.id} smallIcon={true}/>
-                <button  onClick={logout}>logout</button>
-            </span>
-        </>
-        }
             <div className="page-container">
                 {children}
             </div>

@@ -5,7 +5,7 @@ import history from '../history';
 const QuestionPreview = (props) => {
     const { author, optionOne, optionTwo, id } = props;
     return (
-        <div>
+        <div className="question-preview">
             <UserComponent id={author} smallIcon={true}/>
             <div className="options">{optionOne.text}<br/>OR<br/>{optionTwo.text}</div>
             <button onClick={() => history.push(`/questions/${id}`)}>view poll</button>

@@ -1,33 +1,83 @@
-.App {
-  text-align: center;
+.dashboard-header {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.tabs{
+  margin: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.page-container {
+  text-align: center
 }
 
-.App-link {
-  color: #61dafb;
+.dashboard-header>.tabs {
+  grid-column-start: 1;
+  grid-row-start: 1;  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dashboard-header>.app-title {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  margin: auto;
+}
+
+.dashboard-header>.user-component {
+  grid-column-start: 3;
+  grid-row-start: 1;  
+  margin: auto;
+}
+
+.page-meat{
+  width: auto;
+  max-height: 500px;
+  overflow-y: auto;
+  display: block;
+}
+
+.login>.user-component{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-left: 40%;
+  margin-right: 40%
+}
+
+.login>.user-component>span{
+  margin: auto;
+}
+
+.question-preview {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  border: black; 
+  border-width: 1px;
+  border-style: dashed;
+  margin: 5px 0
+}
+
+button {
+  height: 40px;
+  margin: auto 3px;
+}
+
+.logout-button{
+  margin: 10px 
+}
+
+.icon-small{
+  height:50px;
+  width:50px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 3px;
+}
+
+
+.icon-large{
+  height:100px;
+  width:100px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 3px;
 }

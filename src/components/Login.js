@@ -16,7 +16,7 @@ const Login = (props) => {
 
     return (
         <div className="login">
-            <div className="page-header">Select a User</div>
+            <h2 className="page-header">Select a User</h2>
             {Object.keys(users).map(key => {
                 const user = users[key];
                 return (<UserComponent 

@@ -27,9 +27,7 @@ const NewQuestionTab = (props) => {
 
     return (
         <div className="new-question-tab">
-            <div className = "page-header">
-                Add a new question
-            </div>
+            <h2 className = "page-header"> Add a new question </h2>
             <form 
                 className="new-question-form"
                 onSubmit={(e) => handleSubmit(e)}>

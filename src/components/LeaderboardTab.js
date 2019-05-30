@@ -17,24 +17,36 @@ const LeaderboardTab = (props) => {
                 aVal = Object.keys(users[a].questions).length;
                 bVal = Object.keys(users[b].questions).length;
             }
+            console.log(users[a], aVal, users[b], bVal)
             return bVal-aVal;
         });
     }
 
     return (
         <div className="leaderboard-tab">
-            <div className="page-header">Leaderboard</div>
-            {leaders().map((key, index) => {
-                return <div 
-                    className="leaderboard-user-panel"
-                    key={key}>
-                    <label>{index+1} <UserComponent {...users[key]}/></label>
-                    <div className="user-stats">
-                        Questions: {Object.keys(users[key].questions).length} <br/>
-                        Answers: {Object.keys(users[key].answers).length}
+            <h2 className="page-header">Leaderboard</h2>
+            <span className="order-buttons">
+                <button 
+                    disabled={orderByAnswers}
+                    onClick={() => setOrderByAnswers(true)}>Sort By Answered</button>
+                <button 
+                    disabled={!orderByAnswers}
+                    onClick={() => setOrderByAnswers(false)}>Sort By Asked</button>
+            </span>
+            <div className="page-meat">
+                {leaders().map((key, index) => {
+                    return <div
+                        className="leaderboard-user-panel"
+                        key={key}>
+                        <UserComponent {...users[key]} smallIcon={true}>
+                            <div className="user-stats">
+                                Asked: {Object.keys(users[key].questions).length} <br/>
+                                Answered: {Object.keys(users[key].answers).length}
+                            </div>
+                        </UserComponent>
                     </div>
-                </div>
-            })}
+                })}
+            </div>
         </div>
     );
 };
