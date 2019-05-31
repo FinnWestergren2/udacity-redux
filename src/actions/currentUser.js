@@ -5,12 +5,12 @@ export function setCurrentUser(userId){
     return {
         type: SET_CURRENT_USER,
         userId
-    }
+    };
 }
 
 export function clearCurrentUser(){
     return {
         type: CLEAR_CURRENT_USER
-    }
+    };
 }
 

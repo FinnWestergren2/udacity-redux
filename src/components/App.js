@@ -9,7 +9,7 @@ import '../css/App.css';
 
 const App = (props) => {
 
-  const { dispatch } = props
+  const { dispatch } = props;
 
   useEffect(() => dispatch(receiveAll()), [dispatch]);
 

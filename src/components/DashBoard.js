@@ -41,13 +41,13 @@ const mapStateTopProps = (state) => {
     return {
         users: state.users,
         currentUserId: state.currentUser
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         clearCurrentUser: () => dispatch(clearCurrentUserAction())
-    }
+    };
 };
 
 export default connect(mapStateTopProps, mapDispatchToProps)(Dashboard);

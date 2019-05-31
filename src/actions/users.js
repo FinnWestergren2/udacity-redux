@@ -6,19 +6,19 @@ export function receiveUsers(users) {
     return {
         type: RECEIVE_USERS,
         users
-    }
+    };
 }
 
 export function addUsers(user){
     return {
         type: ADD_USER,
         user
-    }
+    };
 }
 
 export function deleteUser(user){
     return {
         type: DELETE_USER,
         user
-    }
+    };
 }

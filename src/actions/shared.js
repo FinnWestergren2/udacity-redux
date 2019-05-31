@@ -7,7 +7,7 @@ export function receiveAll() {
     return (dispatch) => {
         _getUsers().then(data => dispatch(receiveUsers(data)));
         _getQuestions().then(data => dispatch(receiveQuestions(data)));
-    }
+    };
 }
 
 export function addAnswer(answerObj){
@@ -15,5 +15,5 @@ export function addAnswer(answerObj){
     return {
         type: ADD_ANSWER,
         answerObj
-    }
+    };
 }
