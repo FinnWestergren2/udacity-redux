@@ -4,7 +4,6 @@ import Login from './Login';
 import { connect } from 'react-redux';
 import HomeTab from './HomeTab';
 import NewQuestionTab from './NewQuestionTab';
-import ProfileTab from './ProfileTab';
 import LeaderboardTab from './LeaderboardTab';
 import QuestionPage from './QuestionPage';
 
@@ -23,9 +22,6 @@ const Routes = (props) => {
             <Route
                 component={NewQuestionTab}
                 path='/add'/>
-            <Route
-                component={ProfileTab}
-                path='/home'/>
             <Route
                 component={LeaderboardTab}
                 path='/leaderboard'/>
