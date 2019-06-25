@@ -34,7 +34,7 @@ If the question does not exist (bad url), it will display a 404 error.
 - New Question Page -
 Contains 2 inputs and a submit button (would you rather {input 1} OR {input 2})
 Upon submission, a new question is created and is visible by all members.
-You will then be redirected to the Question Page corresponding to the question you just submitted.
+You will then be redirected to the Home Page.
 
 - Leaderboard Page -
 Display of all members and their stats in order by total submissions + answers
